@@ -38,19 +38,6 @@ def close_meet_browser_window(browser_name, browser_title, window_title):
     except Exception as e:
         print(f"Error: {str(e)}")
 
-# def close_meet_browser_window(browser_name, window_title):
-#    try:
-#        browser_windows = gw.getWindowsWithTitle(window_title)
-#        for browser_window in browser_windows:
-#            match = re.search(r"Meet - ([a-zA-Z0-9-]+)$", browser_window.title)
-#            if match:
-#                meet_id = match.group(1)
-#                browser_window.close()
-#                print(f"Google Meet {meet_id} in {browser_name} browser closed.")
-#                break
-#    except Exception as e:
-#        print(f"Error: {str(e)}")
-
 def reopen_zoom():
     subprocess.Popen(r"C:\Users\Tom\AppData\Roaming\Zoom\bin\Zoom.exe")
     print("Zoom application reopened.")
