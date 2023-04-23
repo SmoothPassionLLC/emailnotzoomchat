@@ -64,7 +64,6 @@ def main():
     {"name": "Brave", "title": "Brave"}
 ]
 
-
     while True:
         elapsed_time = 0
         while True:
@@ -117,8 +116,9 @@ def main():
                     print("Zoom application was closed manually.")
                     reopen_zoom()
 
-        # Add this line to update the video_call_windows variable
-        video_call_windows = gw.getWindowsWithTitle(zoom_window_title) + [win for win in gw.getAllWindows() if "Meet - " in win.title]
+        # Add this line to wait before restarting the loop
+        print(f"Waiting for {reopen_delay} seconds before restarting the loop...")
+        time.sleep(reopen_delay)
 
 if __name__ == "__main__":
     main()
