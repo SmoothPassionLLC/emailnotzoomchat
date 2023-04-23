@@ -85,33 +85,37 @@ def main():
         print(f"Waiting for an additional {time_to_wait/60 - reminder_duration/60} minutes before closing the video call window...")
         time.sleep(time_to_wait - reminder_duration)
 
-        zoom_windows = gw.getWindowsWithTitle(zoom_window_title)
-        google_meet_windows = gw.getWindowsWithTitle(google_meet_title)
+        # Add this line to check for video call windows after waiting
+        video_call_windows = gw.getWindowsWithTitle(zoom_window_title) + [win for win in gw.getAllWindows() if "Meet - " in win.title]
 
-        if zoom_windows:
-            close_video_call_window(zoom_window_title)
-            close_zoom_app()
-            send_notification("Too much video chat", "Please email instead.")
-            print("Too much video chat, please email.")
-            time.sleep(reopen_delay)
-            reopen_zoom()
-        elif google_meet_windows:
-            close_video_call_window(google_meet_title)
-            for browser in browsers:
-                close_meet_browser_window(browser['name'], browser['title'], google_meet_title)
-            send_notification("Too much video chat", "Please email instead.")
-            print("Too much video chat, please email.")
-        else:
-            # Add a check for manually closed Zoom application
-            zoom_process = None
-            for process in psutil.process_iter():
-                if process.name().lower() == "zoom.exe":
-                    zoom_process = process
-                    break
+        if video_call_windows:
+            zoom_windows = gw.getWindowsWithTitle(zoom_window_title)
+            google_meet_windows = gw.getWindowsWithTitle(google_meet_title)
 
-            if zoom_process is None:
-                print("Zoom application was closed manually.")
+            if zoom_windows:
+                close_video_call_window(zoom_window_title)
+                close_zoom_app()
+                send_notification("Too much video chat", "Please email instead.")
+                print("Too much video chat, please email.")
+                time.sleep(reopen_delay)
                 reopen_zoom()
+            elif google_meet_windows:
+                close_video_call_window(google_meet_title)
+                for browser in browsers:
+                    close_meet_browser_window(browser['name'], browser['title'], google_meet_title)
+                send_notification("Too much video chat", "Please email instead.")
+                print("Too much video chat, please email.")
+            else:
+                # Add a check for manually closed Zoom application
+                zoom_process = None
+                for process in psutil.process_iter():
+                    if process.name().lower() == "zoom.exe":
+                        zoom_process = process
+                        break
+
+                if zoom_process is None:
+                    print("Zoom application was closed manually.")
+                    reopen_zoom()
 
         # Add this line to update the video_call_windows variable
         video_call_windows = gw.getWindowsWithTitle(zoom_window_title) + [win for win in gw.getAllWindows() if "Meet - " in win.title]
