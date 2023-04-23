@@ -1,0 +1,6 @@
+psutil
+pygetwindow
+pywinauto
+plyer
+pywin32
+pypiwin32
