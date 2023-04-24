@@ -5,7 +5,7 @@ Introducing EmailNotZoomChat, a Python program designed for those who appreciate
 A Delightful Experience with EmailNotZoomChat
 EmailNotZoomChat offers a range of features to keep your video calls on track:
 
-Always on the lookout for Zoom and Google Meet calls
+Scans your computer for Zoom and Google Meet calls
 Sends a gentle reminder to close the video call after the specified time
 Closes the video call with a smile if it overstays its welcome
 Suggests using email for those longer conversations
