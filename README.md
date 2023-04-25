@@ -1,5 +1,5 @@
 # emailnotzoomchat
-EmailNotZoomChat: Enjoy Shorter Video Calls!
+## EmailNotZoomChat: Enjoy Shorter Video Calls! Helps your with Zoom or Google meet fatigue
 Introducing EmailNotZoomChat, a Python program designed for those who appreciate concise work-related video calls. This program helps manage the duration of Zoom and Google Meet calls by sending friendly reminders to wrap up the call and automatically closing it if it goes beyond the set duration. Supporting Zoom, Google Meet in Firefox, and Google Meet in Brave browsers, it's perfect for keeping your video calls short and sweet.
 
 ## A Delightful Experience with EmailNotZoomChat
